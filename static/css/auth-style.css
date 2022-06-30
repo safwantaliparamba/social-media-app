@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "ibm_plex_sans_thai_loopedRg";
+    text-decoration: none;
+}
+.wrapper {
+    max-width: 1280px;
+    width: 90%;
+    margin: 0 auto;
+}
+@font-face {
+    font-family: "ibm_plex_sans_thai_loopedbold";
+    src: url("../fonts/ibmplexsansthailooped-bold-webfont.woff2")
+            format("woff2"),
+        url("../fonts/ibmplexsansthailooped-bold-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "ibm_plex_sans_thai_loopedRg";
+    src: url("../fonts/ibmplexsansthailooped-regular-webfont.woff2")
+            format("woff2"),
+        url("../fonts/ibmplexsansthailooped-regular-webfont.woff")
+            format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+section.container {
+    min-height: 100vh;
+    background-color: #212121;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+    padding-top: 80px;
+}
+section.container section.form_container {
+    width: 400px;
+}
+
+section.container section.form_container div.top {
+    background: #417690;
+    padding: 15px 0;
+}
+section.container section.form_container div.top h5 {
+    color: #fff;
+    text-align: center;
+}
+section.container section.form_container div.bottom {
+    padding: 25px 20px;
+    background: #121212;
+}
+section.container section.form_container div.bottom form {
+}
+section.container section.form_container div.bottom form div.input_container {
+    margin-bottom:20px;
+}
+section.container
+    section.form_container
+    div.bottom
+    form
+    div.input_container
+    label {
+    display: block;
+    color: #fff;
+    margin-bottom: 5px;
+}
+section.container
+    section.form_container
+    div.bottom
+    form
+    div.input_container
+    input {
+    display: block;
+    width: 100%;
+    background: none;
+    border: 1px solid #353535;
+    font-size: 17px;
+    padding: 5px;
+    border-radius: 4px;
+    color: #fff;
+}
+section.container section.form_container div.bottom form div.submit_container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+section.container
+    section.form_container
+    div.bottom
+    form
+    div.submit_container
+    button {
+    padding: 8px 20px;
+    background: #609ab6;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+}
+section.container
+    section.form_container
+    div.bottom
+    form
+    div.submit_container
+    a {
+    padding: 8px 20px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+}
+section.container
+    section.form_container
+    div.bottom
+    form
+    div.submit_container
+    p.error-message,
+section.form_container div.bottom form div.submit_container .errorlist,p.error-message {
+    color: #fff;
+    width: 100%;
+    margin: 10px 0;
+    list-style: none;
+}
+
+header {
+    padding: 25px 0;
+}
+header section.wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+header section.wrapper h1 {
+    height: 60px;
+}
+header section.wrapper h1 a {
+    display: block;
+}
+header section.wrapper h1 a img {
+    display: inline-block;
+    max-width: 100%;
+    height: 60px;
+}
+header section.wrapper div.right a {
+    padding: 8px 20px;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    outline: none;
+    background: #609ab6;
+    border: none;
+}
+header div.right span {
+    margin-right: 15px;
+}
+section.main {
+    margin-top: 60px;
+}
+section.main h2 {
+    font-size: 25px;
+    font-weight: bold;
+}
+section.main div.form {
+    margin: 30px 0;
+}
+section.main div.form div.input_container {
+    margin-bottom: 20px;
+}
+section.main div.form div.input_container label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+section.main div.form div.input_container input,
+section.main div.form div.input_container select,
+section.main div.form div.input_container textarea {
+    display: block;
+    width: 100%;
+    background: none;
+    border: 1px solid #353535;
+    font-size: 17px;
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+section.main div.form div.input_container textarea {
+    resize: none;
+    background:#353535 ;
+}
+
+section.main div.form div.submit_container {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+section.main div.form div.submit_container button {
+    padding: 8px 20px;
+    background: #609ab6;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    margin-right: 20px;
+    cursor: pointer;
+}
+section.main div.form div.submit_container p.error-message,
+section.main div.form div.submit_container .errorlist {
+    color: #444;
+    width: 100%;
+    margin: 10px 0;
+    list-style: none;
+}

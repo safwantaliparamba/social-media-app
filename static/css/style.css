@@ -1,0 +1,389 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    background: transparent;
+    font-weight: normal;
+    text-decoration: none;
+    outline: none;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-family: "OpenSans bold", Arial, Helvetica, sans-serif;
+}
+ol,
+ul {
+    list-style: none;
+}
+del {
+    text-decoration: line-through;
+}
+
+@font-face {
+    font-family: "robotobold_italic";
+    src: url("../fonts/roboto-bolditalic-webfont.woff2") format("woff2"),
+        url("../fonts/roboto-bolditalic-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "robotoblack";
+    src: url("../fonts/roboto-black-webfont.woff2") format("woff2"),
+        url("../fonts/roboto-black-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "robotoitalic";
+    src: url("../fonts/roboto-italic-webfont.woff2") format("woff2"),
+        url("../fonts/roboto-italic-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "robotoregular";
+    src: url("../fonts/roboto-regular-webfont.woff2") format("woff2"),
+        url("../fonts/roboto-regular-webfont.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    font-family: "robotoregular";
+    font-size: 17px;
+    color: #333;
+    overflow-x: hidden;
+    min-width: 320px;
+}
+input,
+textarea,
+select {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: #333;
+}
+a:hover,
+.submit:hover {
+    filter: alpha(opacity = 85);
+    -moz-opacity: 0.85;
+    -khtml-opacity: 0.85;
+    opacity: 0.85;
+    text-decoration: none;
+    color: inherit;
+}
+.thumb {
+    display: block;
+}
+.thumb img {
+    display: block;
+    width: 100%;
+}
+p {
+    line-height: 1.6em;
+    font-size: 16px;
+    font-family: Arial;
+}
+.hidden {
+    display: none;
+}
+br.clear {
+    clear: both;
+    line-height: 0;
+}
+.wrapper {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+h1 {
+    font-family: "OpenSans", Arial, Helvetica, sans-serif;
+}
+
+/* home section */
+
+#home {
+    width: 100%;
+}
+#home .wrapper {
+}
+#home header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    width: inherit;
+}
+/* #home header h1 {
+} */
+#home header h1 a {
+    font-size: 32px;
+    font-weight: 600;
+}
+/* #home header .right {
+} */
+#home header .right ul {
+    display: flex;
+    align-items: center;
+}
+#home header .right ul li {
+    margin-right: 24px;
+}
+#home header .right ul li a {
+    padding: 8px 18px;
+    /* background-color: #9f2c2c; */
+    border-radius: 10px;
+    font-weight: 600;
+}
+#home header .right ul li a:hover {
+    background: #3b3737;
+    color: #fff;
+}
+#home header .right ul li a.profile-img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#home header .right ul li a.profile-img:hover {
+    background: none;
+    color: #111;
+}
+#home header .right ul li a.profile-img span {
+    font-weight: 600;
+}
+
+#home header .right ul li a.profile-img img {
+    width: 50px;
+    border-radius: 50%;
+}
+#home header .right ul li a.logout {
+    color: #fff;
+    background: #2d2d2d;
+}
+/* #home header .right ul li a.logout{} */
+
+/* profile section  */
+
+#profile {
+    width: 100%;
+    /* background-color:#e6dcdc; */
+    padding: 36px 30px;
+}
+#profile .details {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #bebebe;
+}
+#profile .details .left {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+#profile .details .left img {
+    border-radius: 50%;
+    border: 2px solid #706e6e;
+    width: 160px;
+}
+#profile .details .right {
+    width: 70%;
+}
+#profile .details .right .edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#profile .details .right .edit h4 {
+    font-size: 20px;
+    font-weight: 600;
+}
+#profile .details .right .edit a {
+    padding: 10px 20px;
+    background-color: #564e4e;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 600;
+}
+#profile .details .right .follow {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 24px 0;
+}
+#profile .details .right .follow a {
+    margin-right: 30px;
+    font-weight: 500;
+}
+#profile .details .right .follow a span {
+    font-weight: 600;
+}
+/* #profile .details .right .bio{} */
+#profile .details .right .bio h4 {
+    font-size: 24px;
+    font-weight: 600;
+}
+#profile .details .right .bio h5 {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #9d9797;
+    font-weight: 600;
+    color: #fff;
+    border-radius: 8px;
+    margin: 10px 0;
+}
+#profile .details .right .bio p {
+    width: 80%;
+}
+#profile .details .right .bio > a {
+    color: #0a0a9c;
+    display: inline-block;
+    margin-top: 20px;
+}
+/* #profile .posts{} */
+
+/* create post section  */
+
+.form_container {
+    width: 90%;
+    margin: 0 auto;
+    background: #d5d5d5;
+    border-radius: 20px;
+    margin-top: 50px;
+}
+.form_container .top {
+    padding: 30px;
+}
+.form_container .top a.btn {
+    box-sizing: border-box;
+    text-align: left;
+    padding: 8px 18px;
+    background-color: #2d2d2d;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 10px;
+}
+.form_container .top h1 {
+    text-align: center;
+    font-size: 34px;
+    font-weight: 600;
+}
+.form_container .form {
+}
+.form_container .form form {
+    width: 70%;
+    margin: 0 auto;
+}
+.form_container .form form .input_container {
+    margin-bottom: 16px;
+}
+.form_container .form form .input_container label {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 8px;
+}
+.form_container .form form .input_container input,
+.form_container .form form .input_container textarea {
+    border: 1px solid #353535;
+    padding: 10px 20px;
+    border-radius: 10px;
+    width: 100%;
+    font-size: 20px;
+}
+.form_container .form form .error-message {
+    font-weight: 600;
+    font-size: 19px;
+    color: red;
+}
+.form_container .form form button[type="submit"] {
+    width: 100%;
+    cursor: pointer;
+    border-radius: 20px;
+    margin: 32px 0;
+    font-weight: 600;
+    font-size: 20px;
+    padding: 10px 20px;
+    background: #2d2d2d;
+    color: #fff;
+}
+
+/* home posts section  */
+
+#home-posts {
+    padding: 50px 0;
+}
+#home-posts ul {
+    width: 70%;
+    margin: 0 auto;
+}
+#home-posts ul li.post-container {
+    padding: 30px;
+}
+#home-posts ul li.post-container .top {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#home-posts ul li.post-container .top .thumb {
+    width: 50px;
+}
+#home-posts ul li.post-container .top .thumb img {
+    border-radius: 50%;
+}
+#home-posts ul li.post-container .top .user {
+    margin-left: 32px;
+}
+#home-posts ul li.post-container .top .user a {
+    font-size: 19px;
+    font-weight: 600;
+}
+/* #home-posts ul li.post-container > .thumb{} */
+/* #home-posts ul li.post-container > .thumb img{} */
+/* #home-posts ul li.post-container .bottom{} */
+#home-posts ul li.post-container .bottom p {
+    font-size: 19px;
+    margin: 20px 0;
+}
+#home-posts ul li.post-container .bottom p a {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+#home-posts ul li.post-container .bottom span {
+    font-weight: 600;
+}
+
+
+/* profile posts section  */
+
+
+/* #posts {} */
+#posts h1{
+    text-align: center;
+    margin: 25px 0 0;
+    font-size: 32px;
+    font-weight: 600;
+}
+/* #posts ul{} */
+#posts ul li.post{
+    display: inline-block;
+    padding: 20px 10px;
+    width: 31%;
+}
+/* #posts ul li.post a{} */
+#posts ul li.post a .thumb{
+    margin-bottom: 15px;
+}
+/* #posts ul li.post a .thumb img{} */
+#posts ul li.post a  p{
+    font-weight: 600;
+}

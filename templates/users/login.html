@@ -1,0 +1,41 @@
+{% extends "users/auth-main.html" %}{% load static %} {% block content %}
+
+<section class="form_container">
+    <div class="top">
+        <h5>Login Page</h5>
+    </div>
+    <div class="bottom">
+        <form action="" method="post">
+            {% csrf_token %}
+
+            <div class="input_container">
+                <label for="username"> Username </label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    placeholder="username"
+                />
+            </div>
+            <div class="input_container">
+                <label for="password"> Password </label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="password"
+                />
+            </div>
+
+            {% if error %}
+            <p class="error-message">{{message}}</p>
+            {% endif %}
+            <div class="submit_container">
+
+                <button type="submit">Log in</button>
+                <a href="{% url 'users:signup' %}">Create Account</a>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

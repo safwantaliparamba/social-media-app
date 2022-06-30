@@ -1,0 +1,72 @@
+{% extends "users/auth-main.html" %}
+{% load static %} {% block content %}
+<section class="form_container">
+    <div class="top">
+        <h5><a href="/users/{{author.id}}/">go back</a> Edit Profile</h5>
+    </div>
+    <div class="bottom">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            {% for field in form %}
+            <div class="input_container">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field}}
+            </div>
+            {% endfor %}
+            {% for field in author_form %}
+            <div class="input_container">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field}}
+            </div>
+            {% endfor %}
+
+            <!-- <div class="input_container">
+                <label for="profession">profession</label>
+                <input required type="text" id="profession" name="profession"  value="{{user.profession}}"  />
+            </div>
+
+            <div class="input_container">
+                <label for="image">image</label>
+                {% if user.image %}
+                <a href="{{user.image.url}}">{{user.image.url}}</a>
+                {% endif %}
+                <input type="file" name="image" id="image">                                                                                                                                                                     
+            </div>
+
+            <div class="input_container">
+                <label for="bio">bio</label>
+                <textarea required name="bio" id="bio" cols="48" rows="10"  >{{user.bio}}</textarea>                                                                                                                                                                   
+            </div>
+
+            <div class="input_container">
+                <label for="Username">Username</label>
+                <input required type="text" id="Username" name="Username"  value="{{user.user.username}}" />
+            </div>
+
+            <div class="input_container">
+                <label for="first_name">First name</label>
+                <input required type="text" id="first_name" name="first_name"  value="{{user.user.first_name}}" />
+            </div>
+
+            <div class="input_container">
+                <label for="last_name">Last name</label>
+                <input required type="text" id="last_name" name="last_name"  value="{{user.user.last_name}}" />
+            </div>
+
+            <div class="input_container">
+                <label for="email">Email Address</label>
+                <input required type="email" id="email" name="email"  value="{{user.user.email}}" />
+            </div> -->
+
+            <div class="submit_container">
+                {% if error %}
+                <p class="error-message">{{message}}</p>
+                {% endif %}
+                <button type="submit">Update Account</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

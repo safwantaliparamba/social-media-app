@@ -1,0 +1,51 @@
+{% extends "boilerplate/boilerplate.html" %}{% load static %} {% block content%}
+<section id="profile">
+    <div class="details">
+        <div class="left">
+            {% if user.image%}
+            <img src="{{ user.image.url }}" alt="" />
+            {% endif %}
+        </div>
+        <div class="right">
+            <div class="edit">
+                <h4>@{{user.user.username}}</h4>
+                {% if is_author %}
+                <a href="{% url 'users:edit_profile' pk=user.id  %}" class="btn"
+                    >Edit Profile</a
+                >
+                {% endif %}
+            </div>
+            <div class="follow">
+                <a href="javascript:void(0)"><span>4</span> posts</a>
+                <a href="javascript:void(0)"><span>198</span> followers</a>
+                <a href="javascript:void(0)"><span>289</span> following</a>
+            </div>
+            <div class="bio">
+                <h4>{{user.user.first_name}} {{user.user.last_name}}</h4>
+                <h5>{{user.profession}}</h5>
+                <p>{{user.bio}}</p>
+                <a href="#">personal website</a>
+            </div>
+        </div>
+    </div>
+    <div id="posts">
+        <h1>Posts</h1>
+        <ul>
+            {% for post in posts %}
+            <li class="post">
+                <a href="{% url 'posts:single_post' pk=post.id %}">
+                    <div class="thumb">
+                        <img src="{{post.image.url}}" alt="" />
+                    </div>
+                    {% if post.description|length > 20 %}
+                    <p>{{post.description|slice:20}}...</p>
+                    {% else %}
+                    <p>{{post.description}}</p>
+                    {% endif %}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

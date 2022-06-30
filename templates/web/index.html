@@ -1,0 +1,40 @@
+{% extends "boilerplate/boilerplate.html" %} {% load static %}{% block content %}
+ {% if posts %} {% for post in posts %}
+<section id="home-posts">
+    <ul>
+        <li class="post-container">
+            <div class="top">
+                <div class="thumb">
+                    <a href="{% url 'users:profile' pk=post.author.id %}">
+                        <img
+                            src="{{post.author.image.url}}"
+                            alt="{{post.author.user.username}}"
+                        />
+                    </a>
+                </div>
+                <span class="user">
+                    <a href="{% url 'users:profile' pk=post.author.id %}"
+                        >{{post.author.user.username}}</a
+                    >
+                </span>
+            </div>
+            <div class="thumb">
+                <img src="{{post.image.url}}" alt="" />
+            </div>
+            <div class="bottom">
+                <p>
+                    <a href="{% url 'users:profile' pk=post.author.id %}"
+                        >{{post.author.user.username}}</a
+                    >
+                    <br />
+                    {{post.description}}
+                </p>
+                <span>{{post.created_at}}</span><br />
+                <a href="{% url 'posts:single_post' pk=post.id %}" class="btn"
+                    >view post</a
+                >
+            </div>
+        </li>
+    </ul>
+</section>
+{% endfor %} {% endif %} {% endblock %}

@@ -1,0 +1,22 @@
+{% load static %}
+<header>
+    <h1><a href="/"> Social Media </a></h1>
+    <div class="right">
+        {% if request.user.is_authenticated %}
+        <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="{% url 'posts:create_post' user_id=request.user.author.id %}">Create post</a></li>
+            <li><a href="{% url 'users:profile' pk=request.user.author.id %}" class="profile-img">
+                <img src="{{ request.user.author.image.url }}" alt="">
+                <span>{{request.user.username}}</span>
+            </a></li>
+            <li><a href="{% url 'users:logout' %}" class="logout">Logout</a></li>
+        </ul>
+        {% else %}
+        <ul>
+            <li><a href="{% url 'users:login' %}" class="logout">Login</a></li>
+            <li><a href="{% url 'users:signup' %}" class="logout">Register</a></li>
+        </ul>
+        {% endif %}
+    </div>
+</header>

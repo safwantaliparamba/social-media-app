@@ -1,0 +1,35 @@
+{% extends "users/auth-main.html" %}{% load static %} {% block content %}
+<section class="form_container">
+    <div class="top">
+        <h5>Signup page</h5>
+    </div>
+    <div class="bottom">
+        <form action="" method="post" enctype="multipart/form-data" >
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="input_container">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field}}
+            </div>
+            {% endfor %}
+            {% for field in author_form %}
+            <div class="input_container">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field}}
+            </div>
+            {% endfor %}
+
+
+            <div class="submit_container">
+                {% if error %}
+                <p class="error-message">{{message}} </p>
+                {% endif %}
+                <button type="submit">Create Account</button>
+
+                <a href="{% url 'users:login' %}">Login</a>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
