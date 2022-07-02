@@ -11,8 +11,8 @@
     </head>
     <body>
         <section id="home">
+            {% include 'includes/header.html' %}
             <div class="wrapper">
-                {% include 'includes/header.html' %}
                 {% block content %}{% endblock %}
             </div>
         </section>

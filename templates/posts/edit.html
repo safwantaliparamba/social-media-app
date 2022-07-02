@@ -1,0 +1,29 @@
+{% extends "boilerplate/boilerplate.html" %} {% load static %} 
+{% block content %}
+
+<section class="form_container">
+    <div class="top">
+        <a href="{% url 'posts:single_post' pk=pk %}" class="btn">go back</a>
+        <h1>Create Post</h1>
+    </div>
+    <div class="form">
+        <form action="" method="POST" enctype="multipart/form-data" >
+            {% csrf_token %}
+            {% for field in form %}
+            <div class="input_container">
+                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                {{field}}
+            </div>
+            {% endfor %}
+            {% if error %}
+                <p class="error-message">{{message}} </p>
+                {% endif %}
+            <button type="submit">Edit Post</button>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
+
+
+

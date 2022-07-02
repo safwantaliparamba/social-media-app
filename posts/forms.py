@@ -7,3 +7,9 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         exclude = ['created_at', 'author']
+
+
+class EditPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        exclude = ['author']

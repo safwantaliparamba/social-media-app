@@ -110,13 +110,16 @@ h1 {
     width: 100%;
 }
 #home .wrapper {
+    padding-top: 150px;
 }
 #home header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    background-color:#fff;
     align-items: center;
     padding: 25px 0;
-    width: inherit;
+    position: fixed;
+    width: 100%;
 }
 /* #home header h1 {
 } */
@@ -324,13 +327,36 @@ h1 {
     margin: 0 auto;
 }
 #home-posts ul li.post-container {
+    background: #fafafe;
     padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 24px;
 }
 #home-posts ul li.post-container .top {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+}
+#home-posts ul li.post-container .top .author {
+    display: flex;
+    align-items: center;
+}
+#home-posts ul li.post-container .top a.btn,#home-posts ul li.post-container .top a.btn-delete{
+    padding: 10px 20px;
+    background: #2d2d2d;
+    font-weight: 600;
+    border-radius: 10px;
+    color: #fff;
+}
+#home-posts ul li.post-container .top a.btn-delete{
+    font-size: 17px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+#home-posts ul li.post-container .top .user-pk{
+    display: flex;
+    align-items: center;
 }
 #home-posts ul li.post-container .top .thumb {
     width: 50px;
@@ -387,3 +413,10 @@ h1 {
 #posts ul li.post a  p{
     font-weight: 600;
 }
+
+.form_container .form form .input_container #image-clear_id ,.form_container .form form .input_container label[for="image-clear_id"]{
+    display: none;
+}
+
+/* search bar  */
+

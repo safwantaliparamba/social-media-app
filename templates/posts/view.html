@@ -4,17 +4,29 @@
     <ul >
         <li class="post-container">
             <div class="top">
-                <div class="thumb">
-                    <a href="{% url 'users:profile' pk=post.author.id %}">
-                        <img
-                            src="{{post.author.image.url}}"
-                            alt="{{post.author.user.username}}"
-                        />
+                <div class="user-pk">
+                    <div class="thumb">
+                        <a href="{% url 'users:profile' pk=post.author.id %}">
+                            <img
+                                src="{{post.author.image.url}}"
+                                alt="{{post.author.user.username}}"
+                            />
+                        </a>
+                    </div>
+                    <span class="user">
+                        <a href="{% url 'users:profile' pk=post.author.id %}">{{post.author.user.username}}</a>
+                    </span>
+                </div>
+                {% if is_author %}
+                <div class="author">
+                    <a href="{% url 'posts:edit_post' pk=post.pk %}" class="btn">
+                        Edit Post
+                    </a>
+                    <a href="{% url 'posts:delete_post' pk=post.pk %}" class="btn-delete">
+                        Delete Post
                     </a>
                 </div>
-                <span class="user">
-                    <a href="{% url 'users:profile' pk=post.author.id %}">{{post.author.user.username}}</a>
-                </span>
+                {%  endif %}
             </div>
             <div class="thumb">
                 <img src="{{post.image.url}}" alt="" />

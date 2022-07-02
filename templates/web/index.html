@@ -1,22 +1,25 @@
 {% extends "boilerplate/boilerplate.html" %} {% load static %}{% block content %}
- {% if posts %} {% for post in posts %}
+ {% if posts %}
 <section id="home-posts">
     <ul>
+        {% for post in posts %}
         <li class="post-container">
             <div class="top">
-                <div class="thumb">
-                    <a href="{% url 'users:profile' pk=post.author.id %}">
-                        <img
-                            src="{{post.author.image.url}}"
-                            alt="{{post.author.user.username}}"
-                        />
-                    </a>
+                <div class="user-pk">
+                    <div class="thumb">
+                        <a href="{% url 'users:profile' pk=post.author.id %}">
+                            <img
+                                src="{{post.author.image.url}}"
+                                alt="{{post.author.user.username}}"
+                            />
+                        </a>
+                    </div>
+                    <span class="user">
+                        <a href="{% url 'users:profile' pk=post.author.id %}"
+                            >{{post.author.user.username}}</a
+                        >
+                    </span>
                 </div>
-                <span class="user">
-                    <a href="{% url 'users:profile' pk=post.author.id %}"
-                        >{{post.author.user.username}}</a
-                    >
-                </span>
             </div>
             <div class="thumb">
                 <img src="{{post.image.url}}" alt="" />
@@ -29,12 +32,13 @@
                     <br />
                     {{post.description}}
                 </p>
-                <span>{{post.created_at}}</span><br />
+                <span>{{post.created_at|date:'d/m/y'}}</span><br />
                 <a href="{% url 'posts:single_post' pk=post.id %}" class="btn"
                     >view post</a
                 >
             </div>
         </li>
+        {% endfor %}
     </ul>
 </section>
-{% endfor %} {% endif %} {% endblock %}
+{% endif %} {% endblock %}
