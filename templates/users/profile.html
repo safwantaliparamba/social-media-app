@@ -24,12 +24,18 @@
                 <h4>{{user.user.first_name}} {{user.user.last_name}}</h4>
                 <h5>{{user.profession}}</h5>
                 <p>{{user.bio}}</p>
-                <a href="#">personal website</a>
+                {% if user.website %}
+                <a href="{{user.website}}">{{user.website}}</a>
+                {% endif %}
             </div>
         </div>
     </div>
     <div id="posts">
+        {% if posts %}
         <h1>Posts</h1>
+        {% else %}
+        <h1>No Posts</h1>
+        {% endif %}
         <ul>
             {% for post in posts %}
             <li class="post">

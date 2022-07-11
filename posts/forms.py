@@ -6,10 +6,10 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        exclude = ['created_at', 'author']
+        exclude = ['created_at', 'author','likes']
 
 
 class EditPostForm(forms.ModelForm):
     class Meta:
         model = Post
-        exclude = ['author']
+        exclude = ['author','likes']

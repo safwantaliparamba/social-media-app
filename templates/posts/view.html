@@ -32,11 +32,21 @@
                 <img src="{{post.image.url}}" alt="" />
             </div>
             <div class="bottom">
+                <div class="likes">
+                    <div class="wrap" data-post-id="{{post.id}}" >
+                        {% if is_liked %}
+                        <img class="thumb" src="{% static 'images/liked.png' %}" alt="liked" />
+                        {% else %}
+                        <img class="thumb" src="{% static 'images/like.png' %}" alt="liked" />
+                        {% endif %}
+                    </div>
+                    <p>{{post.likes.count}} likes</p>
+                </div>
                 <p>
                     <a href="{% url 'users:profile' pk=post.author.id %}">{{post.author.user.username}}</a> <br />
                     {{post.description}}
                 </p>
-                <span>{{post.created_at}}</span>
+                <span>{{post.created_at|date:'d/m/y'}}</span>
             </div>
         </li>
     </ul>

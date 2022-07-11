@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect,HttpResponse
 from django.contrib.auth.decorators import login_required
 
 
@@ -99,7 +99,7 @@ def logout(request):
 
 @login_required(login_url='/users/login')
 def profile(request, pk):
-    user = Author.objects.get(pk=pk)
+    user = Author.objects.get(id=pk)
     posts = user.post.all()
     is_author = False
     if request.user == user.user:
@@ -154,3 +154,13 @@ def edit_profile(request, pk):
             'author': author
         }
         return render(request, 'users/edit_profile.html', context)
+
+
+def search(request):
+    q = request.GET.get('q')
+    try:
+        users = User.objects.filter(username__contains=q)
+    except:
+        users = None
+    context = {'users': users}
+    return render(request, 'users/search.html',context)

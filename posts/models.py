@@ -10,9 +10,9 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True,editable=False)
     description = models.TextField(blank=True,null=True)
     location = models.CharField(max_length=128,null=True,blank=True)
-    # tags = models.ManyToManyField()
-    # comments = models.ForeignKey()
-    # likes = models.ForeignKey()
+    likes = models.ManyToManyField('users.Author',related_name='likes')
 
     def __str__(self):
         return str(self.id)
+
+

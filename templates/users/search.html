@@ -1,0 +1,27 @@
+{% extends "boilerplate/boilerplate.html" %}{% load static %} {% block content%}
+<div id="search">
+    <h1>searched for <span>{{request.GET.q}}</span></h1>
+    <ul class="searches">
+        {% if users %}
+        {% for user in users %}
+        <li>
+            <div class="top">
+                <div class="wrap">
+                    <img src="{{user.author.image.url}}" alt="" />
+                </div>
+                <div class="details">
+                    <a href="{% url 'users:profile' pk=user.author.pk %}">
+                        <span>@{{user.username}}</span>
+                    </a>
+                    <p>{{user.author.bio|slice:50}}..</p> </p>
+                </div>
+            </div>
+            <a href="{% url 'users:profile' pk=user.author.pk %}" class="btn">view profile</a>
+        </li>
+        {% endfor %}
+        {% else %}
+        <h1>no user found with the username {{request.GET.q}}</h1>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

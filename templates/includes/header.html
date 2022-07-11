@@ -1,6 +1,14 @@
 {% load static %}
 <header>
     <h1><a href="/"> Social Media </a></h1>
+    <div class="search">
+        <form action="{% url 'users:search' %}" method="get" >
+            <input type="text" placeholder="search here..." autocomplete="off" name="q" value="{{ request.GET.q }}" >
+            <button type="submit">
+                <img src="{% static 'images/search.svg' %}" alt="Search">
+            </button>
+        </form>
+    </div>
     
     <div class="right">
         {% if request.user.is_authenticated %}
@@ -8,8 +16,8 @@
             <li><a href="/">Home</a></li>
             <li><a href="{% url 'posts:create_post' user_id=request.user.author.id %}">Create post</a></li>
             <li><a href="{% url 'users:profile' pk=request.user.author.id %}" class="profile-img">
-                <img src="{{ request.user.author.image.url }}" alt="">
-                <span>{{request.user.username}}</span>
+                <img src="{{ request.user.author.image.url }}" alt="{{request.user.username}}">
+                <!-- <span>{{request.user.username}}</span> -->
             </a></li>
             <li><a href="{% url 'users:logout' %}" class="logout">Logout</a></li>
         </ul>

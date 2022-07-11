@@ -10,7 +10,7 @@ class Author(models.Model):
     joined_date = models.DateTimeField(auto_now_add=True,editable=False)
     image = models.FileField(upload_to='profile/')
     bio = models.TextField(blank=True,null=True)
-    # social_links 
+    website = models.URLField(blank=True,null=True)
 
     def __str__(self):
         return str(self.user.username)

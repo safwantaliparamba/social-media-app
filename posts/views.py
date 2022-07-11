@@ -1,8 +1,10 @@
-from django.shortcuts import render, HttpResponseRedirect, get_object_or_404
+import json
+from django.shortcuts import render, HttpResponseRedirect, get_object_or_404, HttpResponse
 from django.contrib.auth.decorators import login_required
 
 from .forms import EditPostForm, PostForm
 from .models import Post
+from users.models import Author
 
 
 @login_required(login_url='/users/login/')
@@ -32,10 +34,15 @@ def single_post(request, pk):
     post = Post.objects.get(pk=pk)
     if request.user.author.pk == post.author.pk:
         is_author = True
+    try:
+        is_liked = post.likes.get(pk=request.user.author.pk)
+    except:
+        is_liked = False
     context = {
         'post': post,
         'title': 'View post',
-        'is_author': is_author
+        'is_author': is_author,
+        'is_liked': is_liked
     }
     return render(request, 'posts/view.html', context)
 
@@ -72,7 +79,39 @@ def edit_post(request, pk):
     return render(request, 'posts/edit.html', context)
 
 
-def delete_post(request,pk):
+def delete_post(request, pk):
     post = Post.objects.get(pk=pk)
     post.delete()
     return HttpResponseRedirect('/')
+
+
+
+def like_post(request, post_id):
+    post = Post.objects.get(pk=post_id)
+    user = request.user.author.pk
+    try:
+        user_exist = post.likes.get(pk=user)
+    except:
+        user_exist = None
+
+
+    post.likes.add(user)
+    like_count = post.likes.count()
+    response_obj = {
+        'status':'success',
+        'title': 'liked post successfully',
+        'message': 'You liked post successfully',
+        'likes':like_count
+    }
+
+    if user_exist:
+        post.likes.remove(user)
+        like_count = post.likes.count()
+        response_obj = {
+        'status':'already liked',
+        'title': 'You already liked this post',
+        'message': 'You already liked this post',
+        'likes':like_count
+    }
+
+    return HttpResponse(json.dumps(response_obj))

@@ -115,17 +115,42 @@ h1 {
 #home header {
     display: flex;
     justify-content: space-around;
-    background-color:#fff;
+    background-color: #fff;
     align-items: center;
-    padding: 25px 0;
+    padding: 10px 0;
     position: fixed;
     width: 100%;
+    filter: drop-shadow(0px -7px 18px #403e3e);
 }
 /* #home header h1 {
 } */
 #home header h1 a {
     font-size: 32px;
     font-weight: 600;
+}
+#home header .search{
+    background: #fafafe;
+    padding: 5px 40px;
+    border-radius: 10px;
+    border: 1px solid #353535;
+}
+#home header .search form{
+    display: flex;
+    align-items: center;
+}
+#home header .search form input{
+    font-size: 19px;
+}
+#home header .search form button[type="submit"]{
+    cursor: pointer;
+    width: 40px;
+    padding: 10px;
+    border-radius: 50%;
+    /* filter: drop-shadow(0px -7px 18px #403e3e); */
+}
+#home header .search form button[type="submit"] img{
+    width: 100%;
+    display: block;
 }
 /* #home header .right {
 } */
@@ -163,6 +188,7 @@ h1 {
 #home header .right ul li a.profile-img img {
     width: 50px;
     border-radius: 50%;
+    border: 2px solid #353535;
 }
 #home header .right ul li a.logout {
     color: #fff;
@@ -342,19 +368,20 @@ h1 {
     display: flex;
     align-items: center;
 }
-#home-posts ul li.post-container .top a.btn,#home-posts ul li.post-container .top a.btn-delete{
+#home-posts ul li.post-container .top a.btn,
+#home-posts ul li.post-container .top a.btn-delete {
     padding: 10px 20px;
     background: #2d2d2d;
     font-weight: 600;
     border-radius: 10px;
     color: #fff;
 }
-#home-posts ul li.post-container .top a.btn-delete{
+#home-posts ul li.post-container .top a.btn-delete {
     font-size: 17px;
     margin-left: 20px;
     cursor: pointer;
 }
-#home-posts ul li.post-container .top .user-pk{
+#home-posts ul li.post-container .top .user-pk {
     display: flex;
     align-items: center;
 }
@@ -374,6 +401,20 @@ h1 {
 /* #home-posts ul li.post-container > .thumb{} */
 /* #home-posts ul li.post-container > .thumb img{} */
 /* #home-posts ul li.post-container .bottom{} */
+/* #home-posts ul li.post-container .bottom .likes{} */
+#home-posts ul li.post-container .bottom .likes .wrap{
+    display: inline-block;
+    width: 35px;
+    cursor: pointer;
+    margin: 15px 0 10px;
+}
+#home-posts ul li.post-container .bottom .likes .wrap img{
+    width: 100%;
+}
+#home-posts ul li.post-container .bottom .likes p{
+    margin: 0;
+}
+
 #home-posts ul li.post-container .bottom p {
     font-size: 19px;
     margin: 20px 0;
@@ -388,35 +429,86 @@ h1 {
     font-weight: 600;
 }
 
-
 /* profile posts section  */
 
-
 /* #posts {} */
-#posts h1{
+#posts h1 {
     text-align: center;
     margin: 25px 0 0;
     font-size: 32px;
     font-weight: 600;
 }
 /* #posts ul{} */
-#posts ul li.post{
+#posts ul li.post {
     display: inline-block;
     padding: 20px 10px;
     width: 31%;
 }
 /* #posts ul li.post a{} */
-#posts ul li.post a .thumb{
+#posts ul li.post a .thumb {
     margin-bottom: 15px;
 }
 /* #posts ul li.post a .thumb img{} */
-#posts ul li.post a  p{
+#posts ul li.post a p {
     font-weight: 600;
 }
 
-.form_container .form form .input_container #image-clear_id ,.form_container .form form .input_container label[for="image-clear_id"]{
+.form_container .form form .input_container #image-clear_id,
+.form_container .form form .input_container label[for="image-clear_id"] {
     display: none;
 }
 
-/* search bar  */
+/* search profiles   */
 
+#search {
+    background-color: #fafafe;
+    padding: 50px;
+}
+#search h1{
+    text-align: center;
+    font-size: 22px;
+    margin-bottom: 40px;
+}
+#search h1 span{
+    font-size: 24px;
+    font-weight: 600;
+}
+#search ul.searches li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+#search ul.searches li .top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* width: 20%; */
+}
+#search ul.searches li .top .wrap{
+    width: 70px;
+    display: block;
+    margin-right: 20px;
+}
+#search ul.searches li .top .wrap img{
+    width: 100%;
+    display: block;
+    border-radius: 50%;
+    border: 2px solid #353535;
+}
+#search ul.searches li .top .details{}
+#search ul.searches li .top .details a{
+    margin-bottom: 20px;
+}
+#search ul.searches li .top .details a span{
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+#search ul.searches li .top .details p{}
+#search ul.searches li a.btn{
+    color: #fff;
+    background: #2d2d2d;
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+}

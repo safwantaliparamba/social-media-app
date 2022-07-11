@@ -1,4 +1,4 @@
-{% extends "boilerplate/boilerplate.html" %} {% load static %}{% block content %}
+{% extends "boilerplate/boilerplate.html" %} {% load static %}{% block content%}
  {% if posts %}
 <section id="home-posts">
     <ul>
@@ -7,33 +7,43 @@
             <div class="top">
                 <div class="user-pk">
                     <div class="thumb">
-                        <a href="{% url 'users:profile' pk=post.author.id %}">
+                        <a href="{% url 'users:profile' pk=post.post.author.id %}">
                             <img
-                                src="{{post.author.image.url}}"
-                                alt="{{post.author.user.username}}"
+                                src="{{post.post.author.image.url}}"
+                                alt="{{post.post.author.user.username}}"
                             />
                         </a>
                     </div>
                     <span class="user">
-                        <a href="{% url 'users:profile' pk=post.author.id %}"
-                            >{{post.author.user.username}}</a
+                        <a href="{% url 'users:profile' pk=post.post.author.id %}"
+                            >{{post.post.author.user.username}}</a
                         >
                     </span>
                 </div>
             </div>
             <div class="thumb">
-                <img src="{{post.image.url}}" alt="" />
+                <img src="{{post.post.image.url}}" alt="" />
             </div>
             <div class="bottom">
+                <div class="likes">
+                    <div class="wrap" data-post-id="{{post.post.id}}" > 
+                        {% if post.is_liked %}
+                            <img class="thumb" src="{% static 'images/liked.png' %}" alt="liked" />
+                            {% else %}
+                            <img class="thumb" src="{% static 'images/like.png' %}" alt="liked" />
+                        {% endif %}
+                    </div>
+                    <p>{{post.post.likes.count}} likes</p>
+                </div>
                 <p>
-                    <a href="{% url 'users:profile' pk=post.author.id %}"
-                        >{{post.author.user.username}}</a
+                    <a href="{% url 'users:profile' pk=post.post.author.id %}"
+                        >{{post.post.author.user.username}}</a
                     >
                     <br />
-                    {{post.description}}
+                    {{post.post.description}}
                 </p>
-                <span>{{post.created_at|date:'d/m/y'}}</span><br />
-                <a href="{% url 'posts:single_post' pk=post.id %}" class="btn"
+                <span>{{post.post.created_at|date:'d/m/y'}}</span><br />
+                <a href="{% url 'posts:single_post' pk=post.post.id %}" class="btn"
                     >view post</a
                 >
             </div>
