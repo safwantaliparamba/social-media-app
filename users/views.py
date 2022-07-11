@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.http import HttpResponseRedirect,HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 
 
@@ -66,30 +66,30 @@ def signup(request):
 
 
 def login(request):
-    
-        if request.method == 'POST':
-            username = request.POST.get('username')
-            password = request.POST.get('password')
 
-            if username and password:
-                user = authenticate(username=username, password=password)
-                if user is not None:
-                    auth_login(request,user)
-                else:
-                    print("user is none")
-                    context = {
-                        'title': 'Login page',
-                        'error':True,
-                        'message': 'Invalid username or password'
-                    }
-                    return render(request, 'users/login.html', context)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-                return HttpResponseRedirect('/')
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                auth_login(request, user)
+            else:
+                print("user is none")
+                context = {
+                    'title': 'Login page',
+                    'error': True,
+                    'message': 'Invalid username or password'
+                }
+                return render(request, 'users/login.html', context)
 
-        context = {
-            'title': 'Login page',
-        }
-        return render(request, 'users/login.html', context)
+            return HttpResponseRedirect('/')
+
+    context = {
+        'title': 'Login page',
+    }
+    return render(request, 'users/login.html', context)
 
 
 def logout(request):
@@ -108,7 +108,7 @@ def profile(request, pk):
         'title': user.name,
         'user': user,
         'is_author': is_author,
-        'posts':posts,
+        'posts': posts,
     }
     return render(request, 'users/profile.html', context)
 
@@ -162,5 +162,5 @@ def search(request):
         users = User.objects.filter(username__contains=q)
     except:
         users = None
-    context = {'users': users}
-    return render(request, 'users/search.html',context)
+    context = {'users': users, 'title': f'search result for {q}'}
+    return render(request, 'users/search.html', context)
