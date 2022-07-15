@@ -8,7 +8,7 @@ from users.models import Author
 
 
 @login_required(login_url='/users/login/')
-def create_post(request, user_id):
+def create_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -81,11 +81,18 @@ def edit_post(request, pk):
 
 def delete_post(request, pk):
     post = Post.objects.get(pk=pk)
-    post.delete()
-    return HttpResponseRedirect('/')
+    if request.user.author.id == post.author.id:
+        if post.is_deleted == True:
+            post.delete()
+            return HttpResponseRedirect('/')
+        post.is_deleted = True
+        post.save()
+        return HttpResponseRedirect('/')
+    else:
+        return HttpResponseRedirect('/')
+        
 
-
-
+@login_required(login_url='/users/login')
 def like_post(request, post_id):
     post = Post.objects.get(pk=post_id)
     user = request.user.author.pk
@@ -94,24 +101,23 @@ def like_post(request, post_id):
     except:
         user_exist = None
 
-
     post.likes.add(user)
     like_count = post.likes.count()
     response_obj = {
-        'status':'success',
+        'status': 'success',
         'title': 'liked post successfully',
         'message': 'You liked post successfully',
-        'likes':like_count
+        'likes': like_count
     }
 
     if user_exist:
         post.likes.remove(user)
         like_count = post.likes.count()
         response_obj = {
-        'status':'already liked',
-        'title': 'You already liked this post',
-        'message': 'You already liked this post',
-        'likes':like_count
-    }
+            'status': 'already liked',
+            'title': 'You already liked this post',
+            'message': 'You already liked this post',
+            'likes': like_count
+        }
 
     return HttpResponse(json.dumps(response_obj))

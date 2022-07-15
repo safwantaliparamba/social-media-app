@@ -22,7 +22,7 @@
                     <a href="{% url 'posts:edit_post' pk=post.pk %}" class="btn">
                         Edit Post
                     </a>
-                    <a href="{% url 'posts:delete_post' pk=post.pk %}" class="btn-delete">
+                    <a href="{% url 'posts:delete_post' pk=post.pk %}" id="delete-post" class="btn-delete">
                         Delete Post
                     </a>
                 </div>
