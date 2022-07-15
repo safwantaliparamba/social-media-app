@@ -1,3 +1,5 @@
+import json
+import random
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
@@ -100,15 +102,26 @@ def logout(request):
 @login_required(login_url='/users/login')
 def profile(request, pk):
     user = Author.objects.get(id=pk)
-    posts = user.post.all()
+
+    posts = user.post.filter(is_deleted=False)
+    archives = user.post.filter(is_deleted=True)
+
     is_author = False
+    is_followed = False
+
     if request.user == user.user:
         is_author = True
+
+    if not is_author:
+        is_followed = request.user.author.following.filter(pk=user.pk)
+
     context = {
         'title': user.name,
         'user': user,
         'is_author': is_author,
         'posts': posts,
+        'archives': archives,
+        'is_followed': is_followed
     }
     return render(request, 'users/profile.html', context)
 
@@ -159,8 +172,99 @@ def edit_profile(request, pk):
 def search(request):
     q = request.GET.get('q')
     try:
-        users = User.objects.filter(username__contains=q)
+        users = User.objects.filter(username__istartswith=q)
+        if users == None:
+            context = {
+                'error': True,
+                'message': 'user not found'
+            }
+            return render(request, 'users/search.html', context)
+
     except:
         users = None
     context = {'users': users, 'title': f'search result for {q}'}
     return render(request, 'users/search.html', context)
+
+
+def delete_account(request, pk):
+    auth_logout(request)
+    profile = Author.objects.get(pk=pk)
+    profile.user.delete()
+    profile.delete()
+    response_obj = {
+        "success": True,
+        'message': f'You successfully deleted your account {profile}'
+    }
+    return HttpResponse(json.dumps(response_obj))
+
+
+@login_required(login_url='/users/login')
+def follow(request, pk):
+    other_user = Author.objects.get(pk=pk)
+    current_user = request.user.author
+
+    if not other_user.pk == current_user.pk:
+        current_user.following.add(other_user)
+
+        other_user_followers = other_user.followers.count()
+        response_obj = {
+            'title': 'success',
+            'message': f'you successfully following {other_user.user.username}',
+            'followers': other_user_followers
+        }
+
+    else:
+        other_user_followers = other_user.followers.count()
+        response_obj = {
+            'title': 'failed',
+            'message': f'you failed to follow {other_user.user.username}',
+            'followers': other_user_followers
+        }
+
+    return HttpResponse(json.dumps(response_obj))
+
+
+@login_required(login_url='/users/login')
+def unfollow(request, pk):
+    other_user = Author.objects.get(pk=pk)
+    current_user = request.user.author
+
+    if not other_user.pk == current_user.pk:
+        current_user.following.remove(other_user)
+        other_user_followers = other_user.followers.count()
+
+        response_obj = {
+            'title': 'success',
+            'message': f'you successfully unfollowing {other_user.user.username}',
+            'followers': other_user_followers
+        }
+
+    else:
+        other_user_followers = other_user.followers.count()
+        response_obj = {
+            'title': 'failed',
+            'message': f'you failed to unfollow {other_user.user.username}',
+            'followers': other_user_followers
+        }
+
+    return HttpResponse(json.dumps(response_obj))
+
+
+# def demo(request):
+#     for i in range(1,20):
+#         rand = random.randint(1, 1000)
+#         print(rand)
+#         user = User.objects.create(
+#             username=f'demo_user_{rand}',
+#             password='Safwan@#12',
+#             email=f'demouser{rand}@example.com'
+#         )
+#         Author.objects.create(
+#             name=f'demo user {rand}',
+#             profession='demo',
+#             user=user,
+#             image='profile/zeke.jfif',
+#             bio='this is a sample demo account'
+#         )
+#     print(user)
+#     return HttpResponseRedirect('/')

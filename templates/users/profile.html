@@ -10,24 +10,56 @@
             <div class="edit">
                 <h4>@{{user.user.username}}</h4>
                 {% if is_author %}
-                <a href="{% url 'users:edit_profile' pk=user.id  %}" class="btn"
-                    >Edit Profile</a
+                <a
+                    href="{% url 'users:edit_profile' pk=user.id  %}"
+                    class="btn"
                 >
+                    settings
+                </a>
                 {% endif %}
             </div>
-            <div class="follow">
-                <a href="javascript:void(0)"><span>4</span> posts</a>
-                <a href="javascript:void(0)"><span>198</span> followers</a>
-                <a href="javascript:void(0)"><span>289</span> following</a>
+            <div class="followers">
+                <div class="left">
+                    {% if posts.count == 1 %}
+                    <a><span>{{ posts.count }}</span> post</a>
+                    {% else %}
+                    <a><span>{{ posts.count }}</span> posts</a>
+                    {% endif %}
+                    <a
+                        ><span class="followers-count"
+                            >{{ user.followers.count }}</span
+                        >
+                        followers</a
+                    >
+                    <a><span>{{ user.following.count }}</span> following</a>
+                </div>
+                {% if is_author %}
+                <a
+                    href=""
+                    id="delete_profile"
+                    data-id="{{user.id}}"
+                    class="btn"
+                >
+                    delete profile
+                </a>
+                {% endif %}
             </div>
             <div class="bio">
                 <h4>{{user.user.first_name}} {{user.user.last_name}}</h4>
                 <h5>{{user.profession}}</h5>
                 <p>{{user.bio}}</p>
                 {% if user.website %}
-                <a href="{{user.website}}">{{user.website}}</a>
+                <a href="{{user.website}}" target="blank">{{user.website}}</a>
                 {% endif %}
             </div>
+            {% if not is_author %}
+            <div class="follow">
+                <a href="/" id="follow" class="btn">
+                    {% if is_followed %} unfollow {% else %} follow {% endif %}
+                </a>
+                <a href="/" class="btn message">message</a>
+            </div>
+            {% endif %}
         </div>
     </div>
     <div id="posts">
@@ -53,5 +85,26 @@
             {% endfor %}
         </ul>
     </div>
+    <div id="posts">
+        {% if archives %}
+        <h1>Archive</h1>
+        <ul>
+            {% for post in archives %}
+            <li class="post">
+                <a href="{% url 'posts:single_post' pk=post.id %}">
+                    <div class="thumb">
+                        <img src="{{post.image.url}}" alt="" />
+                    </div>
+                    {% if post.description|length > 20 %}
+                    <p>{{post.description|slice:20}}...</p>
+                    {% else %}
+                    <p>{{post.description}}</p>
+                    {% endif %}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
 </section>
 {% endblock %}

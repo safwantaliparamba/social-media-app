@@ -19,8 +19,8 @@
             <a href="{% url 'users:profile' pk=user.author.pk %}" class="btn">view profile</a>
         </li>
         {% endfor %}
-        {% else %}
-        <h1>no user found with the username {{request.GET.q}}</h1>
+        {% elif error %}
+        <h1>{{ message }}</h1>
         {% endif %}
     </ul>
 </div>

@@ -14,7 +14,7 @@
         {% if request.user.is_authenticated %}
         <ul class="nav">
             <li><a href="/">Home</a></li>
-            <li><a href="{% url 'posts:create_post' user_id=request.user.author.id %}">Create post</a></li>
+            <li><a href="{% url 'posts:create_post' %}">Create post</a></li>
             <li><a href="{% url 'users:profile' pk=request.user.author.id %}" class="profile-img">
                 <img src="{{ request.user.author.image.url }}" alt="{{request.user.username}}">
                 <!-- <span>{{request.user.username}}</span> -->
