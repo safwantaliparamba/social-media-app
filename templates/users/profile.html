@@ -14,7 +14,7 @@
                     href="{% url 'users:edit_profile' pk=user.id  %}"
                     class="btn"
                 >
-                    <img src="{% static 'icons/settings.svg' %}" alt="" />
+                    settings
                 </a>
                 {% endif %}
             </div>
@@ -40,7 +40,7 @@
                     data-id="{{user.id}}"
                     class="btn"
                 >
-                    <img src="{% static 'icons/delete.svg' %}" alt="" />
+                    delete profile
                 </a>
                 {% endif %}
             </div>

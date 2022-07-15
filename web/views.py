@@ -12,7 +12,7 @@ def index(request):
     posts = []
 
     for user in following_users:
-        user_posts = user.post.all()
+        user_posts = user.post.all().order_by('-created_at')
         for post in user_posts:
             posts.append({
             'post': post,
@@ -27,6 +27,8 @@ def index(request):
             is_liked = False
         finally :
             post['is_liked'] = is_liked
+
+    print(posts)
 
     context = {
         'title':'Home page',

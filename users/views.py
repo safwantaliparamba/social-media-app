@@ -1,4 +1,5 @@
 import json
+import random
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
@@ -174,9 +175,9 @@ def search(request):
         users = User.objects.filter(username__istartswith=q)
         if users == None:
             context = {
-                    'error': True,
-                    'message': 'user not found'
-                }
+                'error': True,
+                'message': 'user not found'
+            }
             return render(request, 'users/search.html', context)
 
     except:
@@ -185,22 +186,22 @@ def search(request):
     return render(request, 'users/search.html', context)
 
 
-def delete_account(request,pk):
+def delete_account(request, pk):
     auth_logout(request)
     profile = Author.objects.get(pk=pk)
     profile.user.delete()
     profile.delete()
     response_obj = {
         "success": True,
-        'message':f'You successfully deleted your account {profile}'
+        'message': f'You successfully deleted your account {profile}'
     }
     return HttpResponse(json.dumps(response_obj))
 
+
 @login_required(login_url='/users/login')
-def follow(request,pk):
+def follow(request, pk):
     other_user = Author.objects.get(pk=pk)
     current_user = request.user.author
-
 
     if not other_user.pk == current_user.pk:
         current_user.following.add(other_user)
@@ -209,7 +210,7 @@ def follow(request,pk):
         response_obj = {
             'title': 'success',
             'message': f'you successfully following {other_user.user.username}',
-            'followers':other_user_followers
+            'followers': other_user_followers
         }
 
     else:
@@ -217,17 +218,16 @@ def follow(request,pk):
         response_obj = {
             'title': 'failed',
             'message': f'you failed to follow {other_user.user.username}',
-            'followers':other_user_followers
+            'followers': other_user_followers
         }
 
     return HttpResponse(json.dumps(response_obj))
 
 
 @login_required(login_url='/users/login')
-def unfollow(request,pk):
+def unfollow(request, pk):
     other_user = Author.objects.get(pk=pk)
     current_user = request.user.author
-
 
     if not other_user.pk == current_user.pk:
         current_user.following.remove(other_user)
@@ -236,7 +236,7 @@ def unfollow(request,pk):
         response_obj = {
             'title': 'success',
             'message': f'you successfully unfollowing {other_user.user.username}',
-            'followers':other_user_followers
+            'followers': other_user_followers
         }
 
     else:
@@ -244,7 +244,27 @@ def unfollow(request,pk):
         response_obj = {
             'title': 'failed',
             'message': f'you failed to unfollow {other_user.user.username}',
-            'followers':other_user_followers
+            'followers': other_user_followers
         }
 
     return HttpResponse(json.dumps(response_obj))
+
+
+# def demo(request):
+#     for i in range(1,20):
+#         rand = random.randint(1, 1000)
+#         print(rand)
+#         user = User.objects.create(
+#             username=f'demo_user_{rand}',
+#             password='Safwan@#12',
+#             email=f'demouser{rand}@example.com'
+#         )
+#         Author.objects.create(
+#             name=f'demo user {rand}',
+#             profession='demo',
+#             user=user,
+#             image='profile/zeke.jfif',
+#             bio='this is a sample demo account'
+#         )
+#     print(user)
+#     return HttpResponseRedirect('/')

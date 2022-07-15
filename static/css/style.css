@@ -238,10 +238,10 @@ h1 {
 }
 #profile .details .right .edit a {
     display: inline-block;
-    padding:15px 20px;
+    padding:10px 20px;
     background-color: #d3b3ff;
     color: #fff;
-    border-radius: 50%;
+    border-radius: 10px;
     font-weight: 600;
 }
 #profile .details .right .edit a img{
@@ -262,10 +262,10 @@ h1 {
     font-weight: 600;
 }
 #profile .details .right .followers  a.btn{
-    padding: 15px 20px;
-    background-color: #ff2b2b;
+    padding: 10px 20px;
+    background-color: #ff0000;
     color: #fff;
-    border-radius: 50%;
+    border-radius: 10px;
     font-weight: 600;
 }
 #profile .details .right .followers  a.btn img {
